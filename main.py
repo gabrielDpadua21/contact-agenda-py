@@ -36,6 +36,7 @@ def update_contact():
     except:
         print("Contact not found")
 
+
 def set_contact_infos(name, phone, email, address):
     AGENDA[name] = {
         'tel': phone,
