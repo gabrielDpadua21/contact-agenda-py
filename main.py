@@ -37,6 +37,15 @@ def update_contact():
         print("Contact not found")
 
 
+def delete_contact():
+     name = input("Write the contact name: ")
+     try:
+        del AGENDA[name]
+     except:
+        print("Contact not found to delete")
+
+
+
 def set_contact_infos(name, phone, email, address):
     AGENDA[name] = {
         'tel': phone,
@@ -74,5 +83,7 @@ if __name__ == "__main__":
     print("******* CONTACT AGENDA ******\n")
     create_contact()
     update_contact()
+    list_contacts()
+    delete_contact()
     list_contacts()
     find_contact()
