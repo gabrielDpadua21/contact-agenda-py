@@ -8,7 +8,7 @@ AGENDA["frajola"] = {
 }
 
 
-AGENDA['thor'] = {
+AGENDA["thor"] = {
     "tel": "54321",
     "mail": "thor@gmail.com",
     "address": "Av. 2"
