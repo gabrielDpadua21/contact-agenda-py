@@ -28,7 +28,7 @@ def list_contacts():
         print(contact)
 
 def get_contact_info():
-    name = input("Write a name to get contacts info")
+    name = input("Write a name to get contacts info: ")
     try:
         contact = CONTACTS[name]
         print(f"Name: {name}")
@@ -50,7 +50,7 @@ OPTIONS = {
 
 if __name__ == "__main__":
     print("Welcome to your list of contacts....")
-    while INIT:
+    while True:
         print("Select one option: ")
         print("1 - create contact")
         print("2 - delete contact")
