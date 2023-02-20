@@ -1,6 +1,3 @@
-import os
-
-
 AGENDA = {}
 
 
@@ -23,12 +20,28 @@ def create_contact():
     phone = input("Write the contact phone: ")
     email = input("Write the contact e-mail: ")
     address = input("Write the contact address: ")
+    set_contact_infos(name, phone, email, address)
+    print(f"Contact: {name} - register success!!!")
+
+
+def update_contact():
+    try:
+        name = input("Write the contact name: ")
+        AGENDA[name]
+        phone = input("Write the contact phone: ")
+        email = input("Write the contact e-mail: ")
+        address = input("Write the contact address: ")
+        set_contact_infos(name, phone, email, address)
+        print(f"Contact: {name} - update success")
+    except:
+        print("Contact not found")
+
+def set_contact_infos(name, phone, email, address):
     AGENDA[name] = {
         'tel': phone,
         'mail': email,
         "address": address
     }
-    clear()
 
 
 def list_contacts():
@@ -56,12 +69,9 @@ def show_contact(contact):
     print("#####################################")
 
 
-def clear():
-    os.system("clear")
-
-
 if __name__ == "__main__":
     print("******* CONTACT AGENDA ******\n")
     create_contact()
+    update_contact()
     list_contacts()
     find_contact()
