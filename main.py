@@ -1,4 +1,5 @@
 AGENDA = {}
+MENU = {}
 
 
 AGENDA["frajola"] = {
@@ -45,7 +46,6 @@ def delete_contact():
         print("Contact not found to delete")
 
 
-
 def set_contact_infos(name, phone, email, address):
     AGENDA[name] = {
         'tel': phone,
@@ -79,11 +79,28 @@ def show_contact(contact):
     print("#####################################")
 
 
+MENU = {
+    1: create_contact,
+    2: update_contact,
+    3: list_contacts,
+    4: delete_contact,
+    5: find_contact
+}
+
+
+def menu():
+    print(" 1 - CREATE CONTACT")
+    print(" 2 - UPDATE CONTACT")
+    print(" 3 - LIST ALL CONTACTS")
+    print(" 4 - DELETE CONTACT")
+    print(" 5 - FIND A CONTACT")
+    try:
+        option = int(input("Select one option: "))
+        MENU[option]()
+    except:
+        print("Wrong option!!!")
+
+
 if __name__ == "__main__":
     print("******* CONTACT AGENDA ******\n")
-    create_contact()
-    update_contact()
-    list_contacts()
-    delete_contact()
-    list_contacts()
-    find_contact()
+    menu()
