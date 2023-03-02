@@ -1,3 +1,5 @@
+import sys;
+
 AGENDA = {}
 MENU = {}
 
@@ -79,6 +81,7 @@ def show_contact(contact):
     print("#####################################")
 
 
+
 MENU = {
     1: create_contact,
     2: update_contact,
@@ -94,13 +97,22 @@ def menu():
     print(" 3 - LIST ALL CONTACTS")
     print(" 4 - DELETE CONTACT")
     print(" 5 - FIND A CONTACT")
+    print(" 6 - EXIT")
     try:
         option = int(input("Select one option: "))
-        MENU[option]()
+        if option == '6':
+            return False
+        else:
+            MENU[option]()
+            return True
     except:
         print("Wrong option!!!")
 
 
 if __name__ == "__main__":
     print("******* CONTACT AGENDA ******\n")
-    menu()
+    loop = True
+    while loop:
+        loop = menu()
+    else:
+        print("Bye")
