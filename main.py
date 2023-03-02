@@ -90,17 +90,20 @@ MENU = {
     5: find_contact
 }
 
-
-def menu():
+def menu_options():
     print(" 1 - CREATE CONTACT")
     print(" 2 - UPDATE CONTACT")
     print(" 3 - LIST ALL CONTACTS")
     print(" 4 - DELETE CONTACT")
     print(" 5 - FIND A CONTACT")
     print(" 6 - EXIT")
+
+
+def menu():
+    menu_options()
     try:
         option = int(input("Select one option: "))
-        if option == '6':
+        if option == 6:
             return False
         else:
             MENU[option]()
