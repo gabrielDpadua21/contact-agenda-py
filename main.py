@@ -1,5 +1,3 @@
-import sys;
-
 AGENDA = {}
 MENU = {}
 
@@ -24,7 +22,9 @@ def create_contact():
     email = input("Write the contact e-mail: ")
     address = input("Write the contact address: ")
     set_contact_infos(name, phone, email, address)
+    print('-----------------------------------------')
     print(f"Contact: {name} - register success!!!")
+    print('----------------------------------------')
 
 
 def update_contact():
@@ -35,17 +35,23 @@ def update_contact():
         email = input("Write the contact e-mail: ")
         address = input("Write the contact address: ")
         set_contact_infos(name, phone, email, address)
+        print('-----------------------------------------')
         print(f"Contact: {name} - update success")
-    except:
-        print("Contact not found")
+        print('----------------------------------------')
+    except KeyError:
+        print("Contact not found to delete")
+    except Exception as error:
+        print(f'Unexpeted error {error}')
 
 
 def delete_contact():
      name = input("Write the contact name: ")
      try:
         del AGENDA[name]
-     except:
+     except KeyError:
         print("Contact not found to delete")
+     except Exception as error:
+        print(f'Unexpeted error {error}')
 
 
 def set_contact_infos(name, phone, email, address):
@@ -57,28 +63,31 @@ def set_contact_infos(name, phone, email, address):
 
 
 def list_contacts():
-    print("CONTACTS: ")
-    print("#####################################")
+    print('CONTACTS: ')
+    print('------------------------------------')
     for contact in AGENDA:
         show_contact(contact)
+    print('------------------------------------')
 
 
 def find_contact():
-    name = input("Write the contact name: ")
-    print("#####################################")
+    name = input('Write the contact name: ')
+    print('------------------------------------------')
     print(f'FIND THE CONTACT: {name}')
+    print('------------------------------------------')
     try:
         show_contact(name)
     except:
-        print("Contact not found")
+        print('Contact not found')
 
 
 def show_contact(contact):
-    print(f"Name: {contact}")
+    print('---------------------------------------')
+    print(f'Name: {contact}')
     print(f"Phone: {AGENDA[contact]['tel']}")
     print(f"E-mail: {AGENDA[contact]['mail']}")
     print(f"Address: {AGENDA[contact]['address']}")
-    print("#####################################")
+    print('---------------------------------------')
 
 
 
@@ -101,15 +110,18 @@ def menu_options():
 
 def menu():
     menu_options()
+    menu_state = True
     try:
         option = int(input("Select one option: "))
         if option == 6:
-            return False
+            menu_state = False
         else:
             MENU[option]()
-            return True
     except ValueError:
         print("Wrong options, please type only numbers!!!")
+    except Exception as error:
+        print(f'Unexpeted error {error}')
+    return menu_state
 
 
 if __name__ == "__main__":
