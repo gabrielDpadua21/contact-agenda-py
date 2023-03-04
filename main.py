@@ -108,8 +108,8 @@ def menu():
         else:
             MENU[option]()
             return True
-    except:
-        print("Wrong option!!!")
+    except ValueError:
+        print("Wrong options, please type only numbers!!!")
 
 
 if __name__ == "__main__":
