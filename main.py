@@ -1,5 +1,8 @@
+from open_files import append_files, clear_file
+
 AGENDA = {}
 MENU = {}
+FILE_NAME_EXPORT = 'contacts.csv'
 
 
 AGENDA["frajola"] = {
@@ -90,13 +93,24 @@ def show_contact(contact):
     print('---------------------------------------')
 
 
+def export_csv():
+    clear_file(FILE_NAME_EXPORT)
+    append_files(FILE_NAME_EXPORT, 'name,phone,mail,address')
+    for contact in AGENDA:
+        phone = AGENDA[contact]['tel']
+        mail = AGENDA[contact]['mail']
+        address = AGENDA[contact]['address']
+        line = f"{contact},{phone},{mail},{address}"
+        append_files('contacts.csv', line)
+
 
 MENU = {
     1: create_contact,
     2: update_contact,
     3: list_contacts,
     4: delete_contact,
-    5: find_contact
+    5: find_contact,
+    6: export_csv
 }
 
 def menu_options():
@@ -105,7 +119,8 @@ def menu_options():
     print(" 3 - LIST ALL CONTACTS")
     print(" 4 - DELETE CONTACT")
     print(" 5 - FIND A CONTACT")
-    print(" 6 - EXIT")
+    print(" 6 - EXPORT CSV")
+    print(" 0 - EXIT")
 
 
 def menu():
@@ -113,7 +128,7 @@ def menu():
     menu_state = True
     try:
         option = int(input("Select one option: "))
-        if option == 6:
+        if option == 0:
             menu_state = False
         else:
             MENU[option]()
