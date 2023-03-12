@@ -1,8 +1,8 @@
 
-def read_files():
+def read_files(filename):
     try:
-        with open('contacts.txt', 'r') as file:
-            print(file.readlines())
+        with open(filename, 'r') as file:
+            return file.readlines()
     except FileNotFoundError:
         print('File not found')
     except Exception as error:

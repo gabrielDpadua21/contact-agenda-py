@@ -1,4 +1,4 @@
-from open_files import append_files, clear_file
+from open_files import append_files, clear_file, read_files
 
 AGENDA = {}
 MENU = {}
@@ -102,6 +102,24 @@ def export_csv():
         address = AGENDA[contact]['address']
         line = f"{contact},{phone},{mail},{address}"
         append_files('contacts.csv', line)
+    print('---------------------------------------')
+    print('>>> File exported sucess!!!')
+    print('---------------------------------------')
+
+
+def import_contacts():
+    filename = input('Write the file name to import: ')
+    lines = read_files(filename)
+    for line in lines:
+        rows = line.strip().split(',')
+        name = rows[0]
+        email = rows[1]
+        phone = rows[2]
+        address = rows[3]
+        set_contact_infos(name, email, phone, address)
+    print('---------------------------------------')
+    print('>>> File imported sucess!!!')
+    print('---------------------------------------')
 
 
 MENU = {
@@ -110,7 +128,8 @@ MENU = {
     3: list_contacts,
     4: delete_contact,
     5: find_contact,
-    6: export_csv
+    6: export_csv,
+    7: import_contacts
 }
 
 def menu_options():
@@ -120,6 +139,7 @@ def menu_options():
     print(" 4 - DELETE CONTACT")
     print(" 5 - FIND A CONTACT")
     print(" 6 - EXPORT CSV")
+    print(" 7 - IMPORT CONTACTS")
     print(" 0 - EXIT")
 
 
